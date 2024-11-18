@@ -1,0 +1,77 @@
+{
+  "id": "evt_d322742e3afa49329f6eeeb35afbe182",
+  "created": 1731431562,
+  "type": "order.successful",
+  "data": {
+    "event_id": "carpathia-trails",
+    "edition_id": "20240725030318653",
+    "order_reference": "2024-1569949",
+    "order_date": 1724410474,
+    "amount": 49.5,
+    "currency": "eur",
+    "team_name": null,
+    "participants": [
+      {
+        "id": "1",
+        "title_name": null,
+        "first_name": "Barbara",
+        "last_name": "Czar",
+        "email": "alek@gmail.com",
+        "nationality": "PL",
+        "birth_date": "1984-5-12",
+        "gender": "F",
+        "club": "",
+        "tickets": [
+          {
+            "product_id": "CT-20240725030318653-2",
+            "product_name": "Bucegi Trail 58K (3343m+)",
+            "product_type": "ticket",
+            "vat": 0,
+            "price": 49.5,
+            "product_discount": 0,
+            "options": [],
+            "external_product_id": null
+          }
+        ],
+        "add_ons": [],
+        "info": [
+          {
+            "label": "ITRA ID:",
+            "value": "",
+            "external_option_id": null,
+            "external_value_id": null
+          },
+          {
+            "label": "Sports club",
+            "value": "",
+            "external_option_id": null,
+            "external_value_id": ""
+          },
+          {
+            "label": "T-shirt size",
+            "value": "M",
+            "external_option_id": null,
+            "external_value_id": null
+          },
+          {
+            "label": "Medical information (blood group, allergies, important medical conditions):",
+            "value": "0RH-",
+            "external_option_id": null,
+            "external_value_id": null
+          }
+        ],
+        "team_leader": false,
+        "address": null,
+        "phone": {
+          "country_code": "48",
+          "number": "60789798"
+        },
+        "ice": {
+          "full_name": "Aleksander",
+          "country_code": "48",
+          "number": "66234234"
+        }
+      }
+    ]
+  }
+}

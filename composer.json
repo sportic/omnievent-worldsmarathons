@@ -1,0 +1,32 @@
+{
+  "name": "sportic/omnievent-worldsmarathons",
+  "license": "MIT",
+  "description": "",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Sportic\\OmniEvent\\Worldsmarathons\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Sportic\\OmniEvent\\Worldsmarathons\\Tests\\": "tests/src"
+    }
+  },
+  "require": {
+    "sportic/omnievent-schemas": "^0.1|dev-main"
+  },
+  "require-dev": {
+    "bytic/phpqatools": "^1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
