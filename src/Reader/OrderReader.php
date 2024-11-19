@@ -2,63 +2,45 @@
 
 namespace Sportic\OmniEvent\Worldsmarathons\Reader;
 
-
-use Spatie\SchemaOrg\OrderStatus;
+use Spatie\SchemaOrg\BaseType;
 use Sportic\OmniEvent\Models\Orders\RegistrationOrder;
 
-class OrderReader
+class OrderReader extends AbstractReader
 {
-    protected ?RegistrationOrder $order = null;
-
-    public static function from($data)
-    {
-        if (is_string($data)) {
-            $data = json_decode($data, true);
-        }
-
-        if (is_array($data)) {
-            return self::fromArray($data);
-        }
-
-        throw new \Exception('Invalid data');
-    }
-
-    public static function fromArray(array $data): ?RegistrationOrder
-    {
-        $reader = new self();
-        $reader->readFromArray($data);
-        return $reader->result();
-    }
+    protected null|RegistrationOrder|BaseType $object = null;
 
     public function readFromArray(array $data): ?self
     {
-        $this->order = new RegistrationOrder();
-        $this->order->orderNumber($data['id']);
-        $this->order->orderDate($data['created']);
+        $this->object->orderNumber($data['order_reference']);
+        $this->object->orderDate($data['order_date']);
 
-        $this->readStatus($data['type']);
+        $this->readInvoice($data);
+        $this->readParticipants($data['participants']);
         return $this;
     }
 
-    public function result(): ?RegistrationOrder
+    protected function readInvoice($data)
     {
-        return $this->order;
+        $dataInvoice = [
+            'amount' => $data['amount'],
+            'currency' => $data['currency'],
+        ];
+        $this->object->partOfInvoice(
+            InvoiceReader::from($dataInvoice)->result()
+        );
     }
 
-    protected function readStatus($rawStatus = null)
+    protected function resultObjectClass(): string
     {
-        $status = null;
-        switch ($rawStatus) {
-            case 'pending':
-                $status = 'pending';
-                break;
-            case 'completed':
-                $status = 'completed';
-                break;
-            case 'order.successful':
-                $status = OrderStatus::OrderDelivered;
-                break;
+        return RegistrationOrder::class;
+    }
+
+    protected function readParticipants(mixed $participants): void
+    {
+        $items = [];
+        foreach ($participants as $participant) {
+            $items[] = OrderItemReader::from($participant)->result();
         }
-        $this->order->orderStatus($status);
+        $this->object->orderedItem($items);
     }
 }
