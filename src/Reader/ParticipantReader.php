@@ -18,6 +18,8 @@ class ParticipantReader extends AbstractReader
         $this->object->telephone($data['phone']['country_code'] . $data['phone']['number']);
         $this->object->birthDate($data['birth_date']);
         $this->object->gender($this->parseGender($data['gender']));
+        $this->object->nationality($data['nationality']);
+        $this->object->clubByName($data['club']);
         return $this;
     }
 

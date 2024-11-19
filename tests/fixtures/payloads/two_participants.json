@@ -17,10 +17,10 @@
         "first_name": "FName 1",
         "last_name": "LName 1",
         "email": "c1@gmail.com",
-        "nationality": "SK",
+        "nationality": "SK1",
         "birth_date": "1979-1-16",
         "gender": "M",
-        "club": "My Club",
+        "club": "Club 1",
         "tickets": [
           {
             "product_id": "T2-20240725032109824-1",
@@ -78,10 +78,10 @@
         "first_name": "FName 2",
         "last_name": "LName 2",
         "email": "c2@gmail.com",
-        "nationality": "SK",
+        "nationality": "SK2",
         "birth_date": "1982-11-25",
         "gender": "F",
-        "club": "HurasystemTK ",
+        "club": "Club 2",
         "tickets": [
           {
             "product_id": "T2-20240725032109824-1",

@@ -3,6 +3,7 @@
 namespace Sportic\OmniEvent\Worldsmarathons\Tests\Reader;
 
 use Spatie\SchemaOrg\Invoice;
+use Spatie\SchemaOrg\Organization;
 use Sportic\OmniEvent\Models\Orders\RegistrationOrder;
 use Sportic\OmniEvent\Models\Participants\Participant;
 use Sportic\OmniEvent\Models\Races\Race;
@@ -70,5 +71,10 @@ class OrderReaderTest extends AbstractTest
         self::assertSame('FName ' . $key, $participant->getProperty('givenName'));
         self::assertSame('LName ' . $key, $participant->getProperty('familyName'));
         self::assertSame('c' . $key . '@gmail.com', $participant->getProperty('email'));
+        self::assertSame('SK' . $key, $participant->getProperty('nationality'));
+
+        $club = $participant->getClub();
+        self::assertInstanceOf(Organization::class, $club);
+        self::assertSame('Club ' . $key, $club->getProperty('name'));
     }
 }
