@@ -71,10 +71,20 @@ class OrderReaderTest extends AbstractTest
         self::assertSame('FName ' . $key, $participant->getProperty('givenName'));
         self::assertSame('LName ' . $key, $participant->getProperty('familyName'));
         self::assertSame('c' . $key . '@gmail.com', $participant->getProperty('email'));
+        self::assertSame('421908888888' . $key, $participant->getProperty('telephone'));
         self::assertSame('SK' . $key, $participant->getProperty('nationality'));
 
         $club = $participant->getClub();
         self::assertInstanceOf(Organization::class, $club);
         self::assertSame('Club ' . $key, $club->getProperty('name'));
+
+        $address = $participant->getProperty('address');
+        self::assertInstanceOf(\Spatie\SchemaOrg\PostalAddress::class, $address);
+
+        self::assertSame('Address ' . $key, $address->getProperty('streetAddress'));
+        self::assertSame('City ' . $key, $address->getProperty('addressLocality'));
+        self::assertSame('999' . $key, $address->getProperty('postalCode'));
+        self::assertSame('State ' . $key, $address->getProperty('addressRegion'));
+        self::assertSame('CT' . $key, $address->getProperty('addressCountry'));
     }
 }

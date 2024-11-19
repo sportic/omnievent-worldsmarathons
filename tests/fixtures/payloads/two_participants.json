@@ -56,15 +56,15 @@
         ],
         "team_leader": false,
         "address": {
-          "address_line_1": "My Address",
-          "zip": "04001",
-          "city": "Kosice",
-          "state": "Slovensko",
-          "country_code": "SK"
+          "address_line_1": "Address 1",
+          "zip": "9991",
+          "city": "City 1",
+          "state": "State 1",
+          "country_code": "CT1"
         },
         "phone": {
           "country_code": "421",
-          "number": "9088888"
+          "number": "9088888881"
         },
         "ice": {
           "full_name": "Katka ",
@@ -117,20 +117,20 @@
         ],
         "team_leader": false,
         "address": {
-          "address_line_1": "Tyršovo nábrežie 2 ",
-          "zip": "04001",
-          "city": "Košice",
-          "state": "Slovensko ",
-          "country_code": "SK"
+          "address_line_1": "Address 2",
+          "zip": "9992",
+          "city": "City 2",
+          "state": "State 2",
+          "country_code": "CT2"
         },
         "phone": {
           "country_code": "421",
-          "number": "908999999"
+          "number": "9088888882"
         },
         "ice": {
           "full_name": "Tomas",
           "country_code": "421",
-          "number": "908888888"
+          "number": "9088888882"
         }
       }
     ]
