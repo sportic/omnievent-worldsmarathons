@@ -2,12 +2,10 @@
 
 namespace Sportic\OmniEvent\Worldsmarathons\Reader;
 
-use Spatie\SchemaOrg\BaseType;
 use Sportic\OmniEvent\Models\Orders\RegistrationOrder;
 
 class OrderReader extends AbstractReader
 {
-    protected null|RegistrationOrder|BaseType $object = null;
 
     public function readFromArray(array $data): ?self
     {

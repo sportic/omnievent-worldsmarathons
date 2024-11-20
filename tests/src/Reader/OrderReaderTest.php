@@ -93,5 +93,24 @@ class OrderReaderTest extends AbstractTest
         self::assertInstanceOf(EmergencyContact::class, $emergencyContact);
         self::assertSame('EName ' . $key, $emergencyContact->getProperty('name'));
         self::assertSame('421909999999' . $key, $emergencyContact->getProperty('telephone'));
+
+        $this->test_base_order_item_questions($participant, $key);
+    }
+
+    /**
+     * @param Participant $participant
+     * @param $key
+     * @return void
+     */
+    protected function test_base_order_item_questions($participant, $key1): void
+    {
+        $answers = $participant->getRegistrationAnswers();
+        self::assertCount(3, $answers);
+        foreach ($answers as $key2 => $answer) {
+            $key2++;
+            $question = $answer->getQuestion();
+            self::assertEquals('Question ' . $key1 . $key2, $question->getProperty('text'));
+            self::assertEquals('Value ' . $key1 . $key2, $answer->getProperty('text'));
+        }
     }
 }

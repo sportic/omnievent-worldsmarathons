@@ -36,20 +36,20 @@
         "add_ons": [],
         "info": [
           {
-            "label": "Sports club",
-            "value": "HurasystemTK",
+            "label": "Question 11",
+            "value": "Value 11",
             "external_option_id": null,
             "external_value_id": ""
           },
           {
-            "label": "Target time",
-            "value": "01:55",
+            "label": "Question 12",
+            "value": "Value 12",
             "external_option_id": null,
             "external_value_id": ""
           },
           {
-            "label": "T-shirt size",
-            "value": "XL",
+            "label": "Question 13",
+            "value": "Value 13",
             "external_option_id": null,
             "external_value_id": null
           }
@@ -97,20 +97,20 @@
         "add_ons": [],
         "info": [
           {
-            "label": "Sports club",
-            "value": "HurasystemTK ",
+            "label": "Question 21",
+            "value": "Value 21",
             "external_option_id": null,
             "external_value_id": ""
           },
           {
-            "label": "Target time",
-            "value": "01:55",
+            "label": "Question 22",
+            "value": "Value 22",
             "external_option_id": null,
             "external_value_id": ""
           },
           {
-            "label": "T-shirt size",
-            "value": "M",
+            "label": "Question 23",
+            "value": "Value 23",
             "external_option_id": null,
             "external_value_id": null
           }

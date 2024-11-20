@@ -3,10 +3,11 @@
 namespace Sportic\OmniEvent\Worldsmarathons\Reader;
 
 use Spatie\SchemaOrg\BaseType;
+use Sportic\OmniEvent\Models\Base\TypeCollection;
 
 abstract class AbstractReader
 {
-    protected ?BaseType $object = null;
+    protected null|BaseType|TypeCollection $object = null;
 
     public static function from($data)
     {
@@ -21,7 +22,7 @@ abstract class AbstractReader
         throw new \Exception('Invalid data');
     }
 
-    public static function fromArray(array $data): ?BaseType
+    public static function fromArray(array $data): null|BaseType|TypeCollection
     {
         $reader = new static();
         $reader->resultInstance();
@@ -29,7 +30,7 @@ abstract class AbstractReader
         return $reader->result();
     }
 
-    public function result(): ?BaseType
+    public function result(): null|BaseType|TypeCollection
     {
         return $this->object;
     }

@@ -8,7 +8,6 @@ use Spatie\SchemaOrg\MonetaryAmount;
 
 class InvoiceReader extends AbstractReader
 {
-    protected null|Invoice|BaseType $object = null;
 
     public function readFromArray(array $data): ?self
     {

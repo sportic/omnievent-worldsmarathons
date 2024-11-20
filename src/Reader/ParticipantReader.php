@@ -16,8 +16,7 @@ class ParticipantReader extends AbstractReader
         $this->readFromArrayBaseData($data);
         $this->readFromArrayAddress($data['address']);
         $this->readFromArrayEmergencyContact($data['ice']);
-
-//        var_dump($data['info']);
+        $this->readFromArrayAnswers($data['info']);
 
         return $this;
     }
@@ -76,5 +75,14 @@ class ParticipantReader extends AbstractReader
         }
         $emergencyContact = EmergencyContactReader::from($data);
         $this->object->emergencyContact($emergencyContact);
+    }
+
+    protected function readFromArrayAnswers(array $data)
+    {
+        if (empty($data)) {
+            return null;
+        }
+        $questions = RegistrationAnswersReader::from($data);
+        $this->object->registrationAnswers($questions);
     }
 }
