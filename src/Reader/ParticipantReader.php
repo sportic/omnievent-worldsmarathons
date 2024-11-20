@@ -13,16 +13,9 @@ class ParticipantReader extends AbstractReader
 
     public function readFromArray(array $data): ?self
     {
-        $this->object->givenName($data['first_name']);
-        $this->object->familyName($data['last_name']);
-        $this->object->gender($this->parseGender($data['gender']));
-        $this->object->email($data['email']);
-        $this->object->telephone($data['phone']['country_code'] . $data['phone']['number']);
-
-        $this->object->birthDate($data['birth_date']);
-        $this->object->nationality($data['nationality']);
-        $this->object->clubByName($data['club']);
-        $this->object->address($this->parseAddress($data['address']));
+        $this->readFromArrayBaseData($data);
+        $this->readFromArrayAddress($data['address']);
+        $this->readFromArrayEmergencyContact($data['ice']);
 
 //        var_dump($data['info']);
 
@@ -45,7 +38,7 @@ class ParticipantReader extends AbstractReader
         return null;
     }
 
-    protected function parseAddress(?array $addressData): ?PostalAddress
+    protected function readFromArrayAddress(?array $addressData)
     {
         if (empty($addressData)) {
             return null;
@@ -56,6 +49,32 @@ class ParticipantReader extends AbstractReader
         $address->addressLocality($addressData['city'] ?? null);
         $address->addressRegion($addressData['state'] ?? null);
         $address->addressCountry($addressData['country_code'] ?? null);
-        return $address;
+
+        $this->object->address($address);
+    }
+
+    /**
+     * @param array $data
+     * @return void
+     */
+    protected function readFromArrayBaseData(array $data): void
+    {
+        $this->object->givenName($data['first_name']);
+        $this->object->familyName($data['last_name']);
+        $this->object->gender($this->parseGender($data['gender']));
+        $this->object->email($data['email']);
+        $this->object->telephone($data['phone']['country_code'] . $data['phone']['number']);
+        $this->object->birthDate($data['birth_date']);
+        $this->object->nationality($data['nationality']);
+        $this->object->clubByName($data['club']);
+    }
+
+    protected function readFromArrayEmergencyContact(mixed $data)
+    {
+        if (empty($data)) {
+            return null;
+        }
+        $emergencyContact = EmergencyContactReader::from($data);
+        $this->object->emergencyContact($emergencyContact);
     }
 }

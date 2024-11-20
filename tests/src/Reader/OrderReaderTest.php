@@ -3,8 +3,11 @@
 namespace Sportic\OmniEvent\Worldsmarathons\Tests\Reader;
 
 use Spatie\SchemaOrg\Invoice;
+use Spatie\SchemaOrg\OrderItem;
 use Spatie\SchemaOrg\Organization;
+use Spatie\SchemaOrg\PostalAddress;
 use Sportic\OmniEvent\Models\Orders\RegistrationOrder;
+use Sportic\OmniEvent\Models\Participants\EmergencyContact;
 use Sportic\OmniEvent\Models\Participants\Participant;
 use Sportic\OmniEvent\Models\Races\Race;
 use Sportic\OmniEvent\Models\Registrations\EventRegistration;
@@ -54,7 +57,7 @@ class OrderReaderTest extends AbstractTest
 
     protected function test_base_order_item(mixed $orderItem, int|string $key)
     {
-        self::assertInstanceOf(\Spatie\SchemaOrg\OrderItem::class, $orderItem);
+        self::assertInstanceOf(OrderItem::class, $orderItem);
 
         $registration = $orderItem->getProperty('orderedItem');
         self::assertInstanceOf(EventRegistration::class, $registration);
@@ -79,12 +82,16 @@ class OrderReaderTest extends AbstractTest
         self::assertSame('Club ' . $key, $club->getProperty('name'));
 
         $address = $participant->getProperty('address');
-        self::assertInstanceOf(\Spatie\SchemaOrg\PostalAddress::class, $address);
-
+        self::assertInstanceOf(PostalAddress::class, $address);
         self::assertSame('Address ' . $key, $address->getProperty('streetAddress'));
         self::assertSame('City ' . $key, $address->getProperty('addressLocality'));
         self::assertSame('999' . $key, $address->getProperty('postalCode'));
         self::assertSame('State ' . $key, $address->getProperty('addressRegion'));
         self::assertSame('CT' . $key, $address->getProperty('addressCountry'));
+
+        $emergencyContact = $participant->getEmergencyContact();
+        self::assertInstanceOf(EmergencyContact::class, $emergencyContact);
+        self::assertSame('EName ' . $key, $emergencyContact->getProperty('name'));
+        self::assertSame('421909999999' . $key, $emergencyContact->getProperty('telephone'));
     }
 }
