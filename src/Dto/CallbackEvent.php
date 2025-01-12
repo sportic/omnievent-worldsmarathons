@@ -14,5 +14,10 @@ class CallbackEvent extends BaseType
     public ?string $type = null;
 
     public ?RegistrationOrder $order = null;
+
+    public function getOrder(): ?RegistrationOrder
+    {
+        return $this->order;
+    }
 }
 

@@ -4,6 +4,7 @@ namespace Sportic\OmniEvent\Worldsmarathons\Endpoint;
 
 use JsonSerializable;
 use Nip\Utility\Serializable\Serializable;
+use Sportic\OmniEvent\Worldsmarathons\Reader\CallbackEventReader;
 
 class SignedRequest implements JsonSerializable, \Serializable
 {
@@ -15,6 +16,11 @@ class SignedRequest implements JsonSerializable, \Serializable
     public ?string $secret = null;
 
     public ?string $timestamp = null;
+
+    public function getCallbackEvent()
+    {
+        return CallbackEventReader::from($this->payload);
+    }
 
 
     public function __serialize(): array
