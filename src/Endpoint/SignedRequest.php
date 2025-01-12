@@ -3,11 +3,11 @@
 namespace Sportic\OmniEvent\Worldsmarathons\Endpoint;
 
 use JsonSerializable;
-use Nip\Utility\Json\LoadFromJson;
+use Nip\Utility\Serializable\Serializable;
 
 class SignedRequest implements JsonSerializable, \Serializable
 {
-    use LoadFromJson;
+    use Serializable;
 
     public ?string $payload = null;
     public ?string $signature = null;
@@ -16,20 +16,6 @@ class SignedRequest implements JsonSerializable, \Serializable
 
     public ?string $timestamp = null;
 
-    public function jsonSerialize()
-    {
-        return $this->__serialize();
-    }
-
-    public function serialize(): ?string
-    {
-        return serialize($this->__serialize());
-    }
-
-    public function unserialize(string $data): void
-    {
-        $this->__unserialize(unserialize($data));
-    }
 
     public function __serialize(): array
     {
