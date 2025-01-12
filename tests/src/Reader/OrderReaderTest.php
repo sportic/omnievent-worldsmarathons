@@ -11,6 +11,7 @@ use Sportic\OmniEvent\Models\Participants\EmergencyContact;
 use Sportic\OmniEvent\Models\Participants\Participant;
 use Sportic\OmniEvent\Models\Races\Race;
 use Sportic\OmniEvent\Models\Registrations\EventRegistration;
+use Sportic\OmniEvent\Worldsmarathons\Reader\CallbackEventReader;
 use Sportic\OmniEvent\Worldsmarathons\Reader\OrderReader;
 use  Sportic\OmniEvent\Worldsmarathons\Tests\AbstractTest;
 use function PHPUnit\Framework\assertInstanceOf;
@@ -20,9 +21,10 @@ class OrderReaderTest extends AbstractTest
     public function test_base()
     {
         $json = file_get_contents(TEST_FIXTURE_PATH . '/payloads/two_participants.json');
-        $json = json_decode($json, true);
 
-        $order = OrderReader::from($json['data']);
+        $callback = CallbackEventReader::from($json);
+
+        $order = $callback->order;
         $this->test_base_order($order);
 
         $invoice = $order->getProperty('partOfInvoice');
