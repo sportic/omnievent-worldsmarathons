@@ -18,7 +18,7 @@ class SignedRequest implements JsonSerializable, \Serializable
 
     public function jsonSerialize()
     {
-        return $this->serialize();
+        return $this->__serialize();
     }
 
     public function serialize(): ?string
