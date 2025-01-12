@@ -35,6 +35,11 @@ class RequestValidator
         return $this->validateSignature();
     }
 
+    public function getSignedRequest(): SignedRequest
+    {
+        return $this->signedRequest;
+    }
+
     public function calculateSignature()
     {
         $stringToSign = $this->signedRequest->timestamp . '.' . $this->signedRequest->payload;
