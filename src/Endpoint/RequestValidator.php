@@ -19,6 +19,8 @@ class RequestValidator
     {
         $this->request = $request;
         $this->signedRequest = new SignedRequest();
+        $this->populateHeaderParts();
+        $this->populatePayload();
     }
 
     public static function for(ServerRequestInterface|Request $request, $secret): RequestValidator
@@ -30,8 +32,6 @@ class RequestValidator
 
     public function validate()
     {
-        $this->populateHeaderParts();
-        $this->populatePayload();
         return $this->validateSignature();
     }
 
@@ -46,9 +46,16 @@ class RequestValidator
         return hash_hmac('sha256', $stringToSign, $this->signedRequest->secret);
     }
 
-    public function validateSignature()
+    public function validateSignature(): bool
     {
-        return hash_equals($this->calculateSignature(), $this->signedRequest->signature);
+        if (empty($this->signedRequest->signature)) {
+            return false;
+        }
+        $calculatedString = $this->calculateSignature();
+        if (empty($calculatedString)) {
+            return false;
+        }
+        return hash_equals($calculatedString, $this->signedRequest->signature);
     }
 
     protected function populateHeaderParts(): void
