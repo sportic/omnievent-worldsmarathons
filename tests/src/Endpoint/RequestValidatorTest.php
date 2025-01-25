@@ -20,7 +20,7 @@ class RequestValidatorTest extends AbstractTest
 
         $request = Request::create('http://example.com', 'POST', [], [], [], [], $payload);
         $request->headers->add(
-            ['WM-Signature' => 't=1736688537,v1=560a8545ac1b4f93ab3f21bbcc30a2b636eb496c5806038f87dca05c640f1354'],
+            ['WM-Signature' => 't=1736688537,v1=ea3c8bd784219c334e9189c2043ca23d7a24ac511afcef2133b969339119490e'],
         );
         $requestValidator = RequestValidator::for($request, $secret);
         self::assertEquals($return, $requestValidator->validate());
@@ -30,7 +30,7 @@ class RequestValidatorTest extends AbstractTest
     {
         return [
             ['sec_0aaf30b466464c1f8d0c7ff1d745bea2', true],
-//            ['wrong', false],
+            ['wrong', false],
         ];
     }
 }

@@ -14,8 +14,13 @@ class EventRegistrationReader extends AbstractReader
 
     public function readFromArray(array $data): ?self
     {
-        $race = $this->generateRace($data);
+        $tickets = $data['tickets'];
+        $ticketData = current($tickets);
+
+        $race = $this->generateRace($ticketData);
         $this->object->reservationFor($race);
+
+        $this->object->totalPrice($ticketData['price']);
 
         $participant = $this->generateParticipant($data);
         $this->object->addParticipant($participant);
@@ -40,9 +45,7 @@ class EventRegistrationReader extends AbstractReader
 
     protected function generateRace(array $data): ?Race
     {
-        $tickets = $data['tickets'];
-        $ticket = current($tickets);
-        $race = RaceReader::from($ticket);
+        $race = RaceReader::from($data);
         return $race;
     }
 }

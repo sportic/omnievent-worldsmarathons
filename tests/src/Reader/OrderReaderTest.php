@@ -69,6 +69,9 @@ class OrderReaderTest extends AbstractTest
         self::assertEquals('T2-20240725032109824-1', $race->getProperty('identifier'));
         self::assertEquals('Half-marathon', $race->getProperty('name'));
 
+        self::assertEquals('40.5', $registration->getProperty('totalPrice'));
+        self::assertEquals('EUR', $registration->getProperty('priceCurrency'));
+
         $participants = $registration->getParticipants();
         self::assertCount(1, $participants);
         $participant = $participants->current();
