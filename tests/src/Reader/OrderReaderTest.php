@@ -76,6 +76,7 @@ class OrderReaderTest extends AbstractTest
         self::assertCount(1, $participants);
         $participant = $participants->current();
         self::assertInstanceOf(Participant::class, $participant);
+        self::assertEquals($key , $participant->getProperty('identifier'));
         self::assertSame('FName ' . $key, $participant->getProperty('givenName'));
         self::assertSame('LName ' . $key, $participant->getProperty('familyName'));
         self::assertSame('c' . $key . '@gmail.com', $participant->getProperty('email'));

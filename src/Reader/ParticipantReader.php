@@ -58,6 +58,7 @@ class ParticipantReader extends AbstractReader
      */
     protected function readFromArrayBaseData(array $data): void
     {
+        $this->object->identifier($data['id']);
         $this->object->givenName($data['first_name']);
         $this->object->familyName($data['last_name']);
         $this->object->gender($this->parseGender($data['gender']));

@@ -6,7 +6,7 @@ use Sportic\OmniEvent\Worldsmarathons\Dto\CallbackEvent;
 
 /**
  * @property CallbackEvent $object
- * @method CallbackEvent from($json)
+ * @method static CallbackEvent from($json)
  */
 class CallbackEventReader extends AbstractReader
 {
