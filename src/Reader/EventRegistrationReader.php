@@ -14,6 +14,8 @@ class EventRegistrationReader extends AbstractReader
 
     public function readFromArray(array $data): ?self
     {
+        $this->object->identifier($data['id']);
+
         $tickets = $data['tickets'];
         $ticketData = current($tickets);
 

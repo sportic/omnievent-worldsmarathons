@@ -63,6 +63,7 @@ class OrderReaderTest extends AbstractTest
 
         $registration = $orderItem->getProperty('orderedItem');
         self::assertInstanceOf(EventRegistration::class, $registration);
+        self::assertEquals($key , $registration->getProperty('identifier'));
 
         $race = $registration->getRace();
         self::assertInstanceOf(Race::class, $race);
